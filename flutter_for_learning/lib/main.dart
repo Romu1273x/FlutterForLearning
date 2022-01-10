@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_for_learning/page1.dart';
+import 'package:flutter_for_learning/page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +22,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // ホーム画面にMyHomePageというWidgetを表示
-      home: const MyHomePage(title: appTitle),
+      // ルーティングの設定
+      initialRoute: '/', // 一番最初に遷移するルーティングを指定
+      routes: {
+        '/': (context) => MyHomePage(title: appTitle),
+        '/page1': (context) => Page1(title: 'Page1'),
+        '/page2': (context) => Page2(title: 'Page2'),
+      },
     );
   }
 }
@@ -47,6 +54,29 @@ class _MyHomePageState extends State<MyHomePage> {
         // titleは親オブジェクトを継承して受け取っている
         title: Text(widget.title),
       ),
+
+      body:  Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center, // childrenをメイン軸の中心に配置する
+          children: [
+            TextButton(
+              onPressed: () {
+                // ルーティングを用いて遷移先を指定
+                Navigator.pushNamed(context, '/page1');
+              },
+              child: Text('Go to page1'),
+            ),
+
+            TextButton(
+              onPressed: () {
+                // ルーティングを用いて遷移先を指定
+                Navigator.pushNamed(context, '/page2');
+              },
+              child: Text('Go to page2'),
+            ),
+          ],
+      ),),
+
     );
   }
 }
