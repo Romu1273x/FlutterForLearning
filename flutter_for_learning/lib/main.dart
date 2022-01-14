@@ -22,7 +22,15 @@ class MyTodoApp extends StatelessWidget {
 }
 
 // リスト一覧画面用Widget
-class TodoListPage extends StatelessWidget {
+class TodoListPage extends StatefulWidget {
+  @override
+  _TodoListPageState createState() => _TodoListPageState();
+}
+
+class _TodoListPageState extends State<TodoListPage> {
+  // Todoリストのデータ
+  List<String> todoList = [];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,41 +38,35 @@ class TodoListPage extends StatelessWidget {
         title: Text('リスト一覧'),
       ),
       // ListViewを使いリスト一覧を表示
-      body: ListView(
-        children: <Widget>[
-          // CardとListTileを使い、簡単に整ったUIを作成
-          Card(
+      // データを元にListViewを作成
+      body: ListView.builder(
+        // ListView.builderはitemBuilderプロパティで返すWidgetを複数生成する
+        itemCount: todoList.length,
+        itemBuilder: (context, index) {
+          return Card(
             child: ListTile(
-              title: Text('ニンジンを買う'),
+              title: Text(todoList[index]),
             ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('タマネギを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('ジャガイモを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('カレールーを買う'),
-            ),
-          ),
-        ],
+          );
+        },
       ),
       // +ボタンを表示
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           // "push"で新規画面に遷移
-          Navigator.of(context).push(
+          // リスト追加画面から渡される値を受け取る
+          final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context){
               // 遷移先の画面としてリスト追加画面を指定
               return TodoAddPage();
             }),
           );
+          if (newListText != null) {
+            setState(() {
+              // リスト追加
+              todoList.add(newListText);
+            });
+          }
         },
         child: Icon(Icons.add),
         ),
@@ -73,7 +75,15 @@ class TodoListPage extends StatelessWidget {
 }
 
 // リスト追加画面用Widget
-class TodoAddPage extends StatelessWidget {
+class TodoAddPage extends StatefulWidget {
+  @override
+  _TodoAddPageState createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends  State<TodoAddPage> {
+  // 入力されたテキストをデータとして持つ
+  String _text = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +98,13 @@ class TodoAddPage extends StatelessWidget {
           // childrren内にUIを配置
           children: <Widget>[
             // <テキスト入力>を表示
-            TextField(),
+            TextField(
+              // onChangedで_textに値をセット
+              onChanged: (value) {
+                _text = value;
+              },
+              style: TextStyle(color: Colors.blue)
+              ),
 
             // <リスト追加ボタン>を表示
             const SizedBox(height: 8),
@@ -98,7 +114,8 @@ class TodoAddPage extends StatelessWidget {
               // リスト追加ボタン
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO：あとで追加
+                  // "pop"の引数から前の画面にデータを渡す
+                  Navigator.of(context).pop(_text);
                 },
                 child: Text('リスト追加', style: TextStyle(color: Colors.white)),
               ),
