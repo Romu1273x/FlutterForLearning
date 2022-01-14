@@ -77,15 +77,49 @@ class TodoAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        // テキストボタンを表示
-        child: TextButton(
-          // ボタンをクリックした時の処理
-          onPressed: () {
-            // "pop"で前の画面に戻る
-            Navigator.of(context).pop();
-          },
-          child: Text('リスト追加画面（クリックで戻る）'),
+      appBar: AppBar(
+        title: Text('リスト追加'),
+      ),
+      body: Container(
+        // 余白を付ける
+        padding: EdgeInsets.all(64),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // 中央に配置
+          // childrren内にUIを配置
+          children: <Widget>[
+            // <テキスト入力>を表示
+            TextField(),
+
+            // <リスト追加ボタン>を表示
+            const SizedBox(height: 8),
+            Container(
+              // 横幅いっぱいに広げる
+              width: double.infinity,
+              // リスト追加ボタン
+              child: ElevatedButton(
+                onPressed: () {
+                  // TODO：あとで追加
+                },
+                child: Text('リスト追加', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+
+            // <キャンセルボタン>を表示
+            const SizedBox(height: 8),
+            Container(
+              // 横幅いっぱいに広げる
+              width: double.infinity,
+              // キャンセルボタン
+              child: TextButton(
+                // ボタンをクリックした時の処理
+                onPressed: () {
+                  // "pop"で前の画面に戻る
+                  Navigator.of(context).pop();
+                },
+                child: Text('キャンセル'),
+              ),
+            ),
+          ],
         ),
       ),
     );
