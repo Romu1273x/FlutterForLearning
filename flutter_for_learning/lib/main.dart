@@ -43,9 +43,22 @@ class _TodoListPageState extends State<TodoListPage> {
         // ListView.builderはitemBuilderプロパティで返すWidgetを複数生成する
         itemCount: todoList.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              title: Text(todoList[index]),
+          return Dismissible(
+            // Keyは要素を一意に特定できるようにするための値を設定
+            key: UniqueKey(),
+            // onDismissedの中にスワイプされた時の動作を記述する。
+            // directionにはスワイプの方向が入るため、方向によって処理を分けることができる。
+            onDismissed: (direction) {
+              setState(() {
+                // スワイプされた要素をデータから削除
+                todoList.removeAt(index);
+              });
+            },
+            // ListViewの各要素の定義
+            child: Card(
+              child: ListTile(
+                title: Text(todoList[index]),
+              ),
             ),
           );
         },
