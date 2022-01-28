@@ -5,6 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  String text = 'テキスト';
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,17 @@ class MyApp extends StatelessWidget {
           title: Text('タイトル'),
         ),
         body: Center(
-          child: Text('テキスト'),
+          child: Column(
+            children: [
+              Text(text),
+              FloatingActionButton(
+                child: Text('ボタン'),
+                onPressed: (){
+                  // 処理を追加
+                }
+              ),
+            ]
+          )
         ),
       ),
     );
