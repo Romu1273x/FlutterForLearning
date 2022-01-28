@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainViewModel extends ChangeNotifier {
-  String text = '';
+  String text = 'テキスト';
 
   void changeText() {
     text = 'テキストを変更';
