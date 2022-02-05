@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_for_learning/screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,14 +11,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ChatScreen(),
-    );
-  }
-}
-
-class ChatScreen extends StatelessWidget {
-
-  Widget build(BuildContext context) {
-    return Scaffold(
     );
   }
 }
