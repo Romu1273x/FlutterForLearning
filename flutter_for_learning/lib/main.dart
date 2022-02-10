@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_for_learning/login_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChatApp());
 }
 
-class MyApp extends StatelessWidget {
+class ChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+      // アプリ名
+      title: 'ChatApp',
+      theme: ThemeData(
+        // テーマカラー
+        primarySwatch: Colors.blue,
+      ),
+      // ログイン画面を表示
+      home: LoginPage(),
     );
   }
 }
