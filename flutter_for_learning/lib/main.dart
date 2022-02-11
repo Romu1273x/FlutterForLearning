@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_for_learning/login_page.dart';
 
-void main() {
+void main() async {
+  // firebase.authを使うために必要
+  WidgetsFlutterBinding.ensureInitialized(); 
+  await Firebase.initializeApp();
   runApp(ChatApp());
 }
 
