@@ -41,5 +41,18 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!-- firebase_authを使うための設定 -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- {GoogleServices-Info.plistのREVERSED_CLIENT_ID} -->
+				<string>com.googleusercontent.apps.827379562173-n0165e63s8cnckk5i6r9ubc8277534ak</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
