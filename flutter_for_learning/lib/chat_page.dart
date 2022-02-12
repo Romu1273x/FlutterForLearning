@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_for_learning/login_page.dart';
 import 'package:flutter_for_learning/add_post_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // チャット画面用Widget
 class ChatPage extends StatelessWidget {
+  // 引数からユーザー情報を受け取れるようにする
+  ChatPage(this.user);
+  // ユーザー情報
+  final User user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +28,10 @@ class ChatPage extends StatelessWidget {
             },
           ),
         ],
+      ),
+      body: Center(
+        // ユーザー情報を表示
+        child: Text('ログイン情報：${user.email}'),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
