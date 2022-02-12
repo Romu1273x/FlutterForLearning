@@ -42,7 +42,8 @@ class ChatPage extends StatelessWidget {
           // 投稿画面に遷移
           await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
-              return AddPostPage();
+              // 引数からユーザー情報を渡す
+              return AddPostPage(user);
             }),
           );
         },
