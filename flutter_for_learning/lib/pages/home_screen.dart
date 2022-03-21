@@ -10,6 +10,7 @@ import 'home_screen_model.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen._({Key? key}) : super(key: key);
 
+  // main.dartからコールされるWidget
   static Widget withDependencies({required BuildContext context}) {
     return ChangeNotifierProvider(
       create: (_context) => HomeScreenModel(
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size; // デバイスの画面サイズを取得
     final model = Provider.of<HomeScreenModel>(context);
     return Scaffold(
       appBar: AppBar(
@@ -34,8 +35,9 @@ class HomeScreen extends StatelessWidget {
         itemCount: model.todoList.length,
         itemBuilder: (BuildContext context, int index) {
           final todo = model.todoList[index];
-          return InkWell(
+          return InkWell( // タッチされた時の動作を設定
             onTap: () {
+              // 編集ダイアログ
               _showEditTodoDialog(
                 context: context,
                 editingTodo: todo,
@@ -101,6 +103,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // 追加ダイアログ
           _showAddTodoDialog(context: context);
         },
         child: const Icon(Icons.add),
@@ -108,6 +111,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // TODOタスク編集時の表示ダイアログ
   void _showEditTodoDialog({
     required BuildContext context,
     required Todo editingTodo,
@@ -117,7 +121,7 @@ class HomeScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) {
-        return StatefulBuilder(
+        return StatefulBuilder( // StatelessWidgetをStatefulWidgetとして扱う
           builder: (context, setState) {
             return SimpleDialog(
               children: <Widget>[

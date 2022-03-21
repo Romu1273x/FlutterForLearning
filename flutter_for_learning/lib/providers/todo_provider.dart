@@ -19,9 +19,8 @@ class TodoProvider with ChangeNotifier {
     todoList = await getTodoList(database);
   }
 
-  Future<List<Todo>> getTodoList(
-    Database database,
-  ) async {
+  // Todoリストの取得
+  Future<List<Todo>> getTodoList(Database database) async {
     final List<Map<String, dynamic>> maps = await database.query('todo');
     return List.generate(maps.length, (i) {
       return Todo(
@@ -33,6 +32,7 @@ class TodoProvider with ChangeNotifier {
     });
   }
 
+  // Todoリストの追加
   Future<void> addTodo(Todo todo) async {
     // TodoNotifierへTodoを追加
     todoList.add(todo);
@@ -46,6 +46,7 @@ class TodoProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // Todoリストの更新
   Future<void> updateTodo(
     Todo newTodo,
   ) async {
@@ -62,6 +63,7 @@ class TodoProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // Todoリストの削除
   Future<void> deleteTodo(int targetTodoId) async {
     final existingTodoIndex =
         todoList.indexWhere((todo) => todo.id == targetTodoId);

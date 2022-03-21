@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 
 Future<Database> initializeDatabase() async {
   final database = openDatabase(
-    join(await getDatabasesPath(), 'database.db'),
+    join(await getDatabasesPath(), 'database.db'), // DBのパス
     onCreate: _onCreate,
     onUpgrade: _onUpgrade,
     version: 2,
@@ -11,6 +11,7 @@ Future<Database> initializeDatabase() async {
   return database;
 }
 
+// DBが存在しない場合に呼び出す
 void _onCreate(
   Database database,
   int version,
@@ -18,9 +19,7 @@ void _onCreate(
   await _migrate(database, 0, version);
 }
 
-// アプリ公開後にDBのマイグレーションを実施するときに使用します
-// scriptsにフィールドの追加、削除などを記載します
-// 今回は例としてvideoPathを追加しています
+// DBが既に存在し、versionが前回より高いに呼び出す
 void _onUpgrade(
   Database database,
   int oldVersion,
@@ -29,6 +28,7 @@ void _onUpgrade(
   await _migrate(database, oldVersion, newVersion);
 }
 
+// versionに更新があった際にmigrationを実行する
 Future<void> _migrate(Database database, int oldVersion, int newVersion) async {
   for (var i = oldVersion + 1; i <= newVersion; i++) {
     final queries = migrationScripts[i.toString()]!;

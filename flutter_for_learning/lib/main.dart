@@ -6,10 +6,12 @@ import 'providers/todo_provider.dart';
 import 'utilities/initialize_database.dart';
 
 void main() async {
+  // runApp()を呼び出す前にFlutter Engineの機能を利用したい場合に必要
   WidgetsFlutterBinding.ensureInitialized();
+  // DBの準備
   final database = await initializeDatabase();
   runApp(
-    MultiProvider(
+    MultiProvider( // providerの定義
       providers: [
         ChangeNotifierProvider(
           create: (_) => TodoProvider(database: database),
