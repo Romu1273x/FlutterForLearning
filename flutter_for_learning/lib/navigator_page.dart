@@ -12,7 +12,7 @@ class NavigatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      key: globalKey,
+      key: globalKey, // どこからでも遷移できるようにするために必要？
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
           builder: ((context) => page),

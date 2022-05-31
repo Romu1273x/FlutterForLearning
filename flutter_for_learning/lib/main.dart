@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey[300],
         ),
       ),
+      // localizationsDelegates, supportedLocales：多言語化対応？
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale("ja", "JP"),
       ],
+      // WillPopScope：戻るボタンが押された時の制御を行う
       home: WillPopScope(
         onWillPop: () async {
           // Android や iOS のスワイプジェスチャーでアプリが終了しないようにする

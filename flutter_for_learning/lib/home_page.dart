@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 children: pages,
               ),
               bottomNavigationBar: BottomNavigationBar(
-                onTap: handleBottomNavigation,
+                onTap: handleBottomNavigation, // ここでページ遷移を行う
                 currentIndex: currentIndex,
                 items: const [
                   BottomNavigationBarItem(

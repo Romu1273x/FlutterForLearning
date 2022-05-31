@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NavigationUtil {
+  // ._()：シングルトン？
+  // シングルトン：実行時に１つのインスタンスしか生成しないクラス。どこから呼んでも同じステートになる。
   NavigationUtil._();
   static final instance = NavigationUtil._();
 
@@ -38,6 +40,7 @@ class NavigationUtil {
     required GlobalKey<NavigatorState> key,
     required Widget page,
   }) async {
+    // pushAndRemoveUntil：第２引数でtrueが返されるまで以前のルートを全て削除する
     return key.currentState?.pushAndRemoveUntil<T>(
       MaterialPageRoute(
         builder: (context) => page,
