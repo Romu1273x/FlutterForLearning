@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_chat_ui: ^1.6.4
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
