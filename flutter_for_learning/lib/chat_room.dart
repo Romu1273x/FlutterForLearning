@@ -29,15 +29,59 @@ class ChatRoomState extends State<ChatRoom> {
         "https://pbs.twimg.com/profile_images/1335856760972689408/Zeyo7jdq_bigger.jpg",
   );
 
+  /// 他の人からのメッセージを確認
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _addMessage(types.TextMessage(
+  //     author: _other,
+  //     createdAt: DateTime.now().millisecondsSinceEpoch,
+  //     id: randomString(),
+  //     text: "テストです。",
+  //   ));
+  // }
+
+  /// TextMessage.statusの確認
   @override
   void initState() {
     super.initState();
-    _addMessage(types.TextMessage(
-      author: _other,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: randomString(),
-      text: "テストです。",
-    ));
+    for (types.User u in [_user, _other]) {
+      _addMessage(types.TextMessage(
+        author: u,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: randomString(),
+        text: "delivered",
+        status: types.Status.delivered,
+      ));
+      _addMessage(types.TextMessage(
+        author: u,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: randomString(),
+        text: "error",
+        status: types.Status.error,
+      ));
+      _addMessage(types.TextMessage(
+        author: u,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: randomString(),
+        text: "seen",
+        status: types.Status.seen,
+      ));
+      _addMessage(types.TextMessage(
+        author: u,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: randomString(),
+        text: "sending",
+        status: types.Status.sending,
+      ));
+      _addMessage(types.TextMessage(
+        author: u,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: randomString(),
+        text: "delivered",
+        status: types.Status.delivered,
+      ));
+    }
   }
 
   @override
