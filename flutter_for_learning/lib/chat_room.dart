@@ -87,6 +87,10 @@ class ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Chat(
+          theme: const DefaultChatTheme(
+            primaryColor: Colors.green, // メッセージの背景色の変更
+            userAvatarNameColors: [Colors.green], // ユーザー名の文字色の変更
+          ),
           user: _user,
           messages: _messages,
           onSendPressed: _handleSendPressed,
